@@ -12,7 +12,7 @@
         function inserirprod(){
 
             const id = parseFloat(prompt("Informe o ID do produto:"));
-            const nome = prompt("Informe o nome de um produto:");
+            const nome = prompt("Informe o nome do produto:");
             const descricao = prompt("Informe a descrição do produto:");
             const preco = parseFloat(prompt("Informe o preço do produto:"));
 
@@ -34,8 +34,9 @@
             var achou_prod = catalogo.find(produto => produto.id == buscar_id);
 
             if(achou_prod !== undefined){
-
+                
                 alert(`Produto encontrado:\n ID: ${achou_prod.id}, Nome: ${achou_prod.nome}, Descrição: ${achou_prod.descricao}, Preço: ${achou_prod.preco}`);
+
             }else{
                 
                 alert("Desculpe, mas o produto que está buscando não foi encontrado!");
@@ -48,19 +49,26 @@
             
             catalogo.forEach(produto => lista += `ID: ${produto.id}, Nome: ${produto.nome}, Descrição: ${produto.descricao}, Preço: ${produto.preco}\n`);
 
-            alert(lista);
+            if(lista !== undefined){
+                
+                alert(lista);
+
+            }else{
+                
+                alert("Desculpe, mas não existe nenhum produto no catálogo!");
+            }
         }
 
         function atualizarprod(){
 
-            const atualprod = parseFloat(prompt("Informe o ID do catálogo que deseja atualizar:"));
+            const atualprod = parseFloat(prompt("Informe o ID do produto que deseja atualizar:"));
             var resp_prod = catalogo.find(produto => produto.id == atualprod);
 
             if(resp_prod !== undefined){
 
-               var nv_nome = prompt("Informe o novo nome do produto:");
-               var nv_descricao = prompt("Informe uma nova descrição do produto:");
-               var nv_preco = parseFloat(prompt("Informe um novo preço para o produto:"));
+               var nv_nome = prompt("Informe um novo nome para o produto:");
+               var nv_descricao = prompt("Informe uma nova descrição para o produto:");
+               var nv_preco = parseFloat(prompt("Informe um novo valor para o produto:"));
 
                resp_prod.nome = nv_nome;
                resp_prod.descricao = nv_descricao;
@@ -70,13 +78,13 @@
 
             }else{
 
-                alert("O produto informado não foi encontrado!")
-            };
+                alert("Desculpe, mas o produto informado não foi encontrado no catálogo!");
+            }
         }
 
         function deletarprod(){
 
-            const deletprod = parseFloat(prompt("Informe o ID do produto que deseja deletar:"));
+            const deletprod = parseFloat(prompt("Informe o ID do produto que deseja deletar do catálogo:"));
             var resp_delet = catalogo.findIndex(produto => produto.id == deletprod);
 
             if(resp_delet !== -1){
@@ -87,19 +95,18 @@
             }
             else{
 
-                alert("Produto não encontrado no catálogo!");
+                alert("Desculpe, mas o produto não foi encontrado no catálogo!");
             }
         }
 
         var opcao;
 
         do{
-            opcao = Number(prompt("SEJA BEM VINDO AO CATÁLOGO DE COMPRAS DA TECH-WORD!\n Insira 1 para adicionar um novo produto\n Insira 2 para buscar algum produto em específico\n Insira 3 para listar todos os produtos\n Insira 4 para atualizar um produto específico\n Insira 5 para deletar um produto específico\n Insira 0 para encerrar o programa"));
+            opcao = Number(prompt("MENU DO CATÁLOGO:\n Insira 1 para adicionar um novo produto.\n Insira 2 para buscar algum produto.\n Insira 3 para listar todos os produtos.\n Insira 4 para atualizar um produto.\n Insira 5 para deletar um produto.\n Insira 0 para encerrar o programa"));
 
             if(opcao == 1){
 
                 inserirprod();
-
             }
             else if(opcao == 2){
 
