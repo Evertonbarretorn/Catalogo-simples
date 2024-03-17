@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Projeto: Catálogo simples</title>
+</head>
+<body>
+    <script>
+        const catalogo = [];
+        
+        function inserirprod(){
+
+            const id = parseFloat(prompt("Informe o ID do produto:"));
+            const nome = prompt("Informe o nome do produto:");
+            const descricao = prompt("Informe a descrição do produto:");
+            const preco = parseFloat(prompt("Informe o preço do produto:"));
+
+            const produto = {
+                id: id,
+                nome: nome,
+                descricao: descricao,
+                preco: preco
+            };
+
+            catalogo.push(produto);
+
+            alert("Produto inserido com sucesso!");
+        }
+
+        function buscarprod(){
+
+            const buscar_id = parseFloat(prompt("Informe o ID do produto que deseja encontrar:"));
+            var achou_prod = catalogo.find(produto => produto.id == buscar_id);
+
+            if(achou_prod !== undefined){
+                
+                alert(`Produto encontrado:\n ID: ${achou_prod.id}, Nome: ${achou_prod.nome}, Descrição: ${achou_prod.descricao}, Preço: ${achou_prod.preco}`);
+
+            }else{
+                
+                alert("Desculpe, mas o produto que está buscando não foi encontrado!");
+            }
+        }
+
+        function mostrarprod(){
+
+            var lista = "CATÁLOGO:\n";
+            
+            catalogo.forEach(produto => lista += `ID: ${produto.id}, Nome: ${produto.nome}, Descrição: ${produto.descricao}, Preço: ${produto.preco}\n`);
+
+            if(lista !== undefined){
+                
+                alert(lista);
+
+            }else{
+                
+                alert("Desculpe, mas não existe nenhum produto no catálogo!");
+            }
+        }
+
+        function atualizarprod(){
+
+            const atualprod = parseFloat(prompt("Informe o ID do produto que deseja atualizar:"));
+            var resp_prod = catalogo.find(produto => produto.id == atualprod);
+
+            if(resp_prod !== undefined){
+
+               var nv_nome = prompt("Informe um novo nome para o produto:");
+               var nv_descricao = prompt("Informe uma nova descrição para o produto:");
+               var nv_preco = parseFloat(prompt("Informe um novo valor para o produto:"));
+
+               resp_prod.nome = nv_nome;
+               resp_prod.descricao = nv_descricao;
+               resp_prod.preco = nv_preco;
+            
+               alert("Produto atualizado com sucesso!");
+
+            }else{
+
+                alert("Desculpe, mas o produto informado não foi encontrado no catálogo!");
+            }
+        }
+
+        function deletarprod(){
+
+            const deletprod = parseFloat(prompt("Informe o ID do produto que deseja deletar do catálogo:"));
+            var resp_delet = catalogo.findIndex(produto => produto.id == deletprod);
+
+            if(resp_delet !== -1){
+
+                catalogo.splice(resp_delet, 1);
+
+                alert("Produto deletado com sucesso!");
+            }
+            else{
+
+                alert("Desculpe, mas o produto não foi encontrado no catálogo!");
+            }
+        }
+
+        var opcao;
+
+        do{
+            opcao = Number(prompt("MENU DO CATÁLOGO:\n Insira 1 para adicionar um novo produto.\n Insira 2 para buscar algum produto.\n Insira 3 para listar todos os produtos.\n Insira 4 para atualizar um produto.\n Insira 5 para deletar um produto.\n Insira 0 para encerrar o programa"));
+
+            if(opcao == 1){
+
+                inserirprod();
+            }
+            else if(opcao == 2){
+
+                buscarprod();
+            }
+            else if(opcao == 3){
+
+                mostrarprod();
+            }
+            else if( opcao == 4){
+
+                atualizarprod();
+            }
+            else if(opcao == 5){
+
+                deletarprod();
+            }
+
+        }while(opcao !== 0);
+
+        alert("Programa encerrado. Origado por utilizar do catalogo!");
+        
+    </script>
+</body>
+</html>
